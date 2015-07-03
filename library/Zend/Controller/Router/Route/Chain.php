@@ -112,6 +112,7 @@ class Zend_Controller_Router_Route_Chain extends Zend_Controller_Router_Route_Ab
                 $match = $subPath;
             } else {
                 $request->setPathInfo($subPath);
+                $request->setRoute($values);
                 $match = $request;
             }
 
