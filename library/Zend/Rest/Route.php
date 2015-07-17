@@ -133,12 +133,10 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
         $params = $request->getParams();
         $values = array();
         $path   = trim($path, self::URI_DELIMITER);
-        if (empty($path)) {
-            $m = $this->_request->getModuleName();
-            $c = $this->_request->getControllerName();
-            if (!empty($m) && !empty($c)) {
-                $path = $m.'/'.$c;
-            }
+        $m = $this->_request->getModuleName();
+        $c = $this->_request->getControllerName();
+        if (!empty($m) && !empty($c)) {
+            $path = $m . '/' . $c . '/' . $path;
         }
 
         if ($path != '') {
@@ -235,7 +233,7 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
         $result = $this->_values + $this->_defaults;
 
         if ($partial && $result)
-            $this->setMatchedPath($request->getPathInfo());
+            $this->setMatchedPath($request->getPathInfo(true));
 
         return $result;
     }
